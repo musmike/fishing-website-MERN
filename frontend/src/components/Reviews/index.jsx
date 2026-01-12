@@ -1,0 +1,228 @@
+import React, { useState, useEffect } from 'react';
+import axiosClient from '../../api/axiosClient';
+import CustomModal from './CustomModal';
+import Joi from 'joi';
+import { Alert } from 'react-bootstrap';
+import './styles.css';
+
+const Reviews = ({ user }) => {
+    const [reviews, setReviews] = useState([]);
+    const [newReview, setNewReview] = useState("");
+    const [editingReview, setEditingReview] = useState(null);
+    const [reviewToDelete, setReviewToDelete] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [editErrorMessage, setEditErrorMessage] = useState('');
+    const [deleteErrorMessage, setDeleteErrorMessage] = useState('');
+
+    useEffect(() => {
+        fetchReviews();
+    }, []);
+
+    const fetchReviews = async () => {
+        try {
+            const response = await axiosClient.get('/api/reviews');
+            console.log(response.data);
+            setReviews(response.data);
+        } 
+        catch (error) {
+            setErrorMessage('Wystąpił błąd przy pobieraniu opinii.');
+        }
+    };
+
+    const handleEdit = (review) => {
+        setEditingReview(review);
+        setEditErrorMessage('');
+    };
+
+    const handleSaveEdit = async () => {
+        const schema = Joi.object({
+            content: Joi.string().required().max(500).messages({
+                'any.required': 'Treść recenzji jest wymagana!',
+                'string.empty': 'Treść recenzji nie może być pusta!',
+                'string.max': 'Treść recenzji może mieć maksymalnie {#limit} znaków!'
+            })
+        });
+
+        const { error } = schema.validate({ content: editingReview.content });
+
+        if (error) {
+            setEditErrorMessage(error.details[0].message);
+            return;
+        }
+
+        try {
+            await axiosClient.patch(`/api/review/${editingReview._id}`, { content: editingReview.content });
+            setEditingReview(null);
+            setEditErrorMessage('');
+            fetchReviews();
+        } 
+        catch (error) {
+            if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+                setEditErrorMessage(error.response.data.message); 
+            } 
+            else {
+                setEditErrorMessage("Wystąpił nieoczekiwany błąd.");
+            }
+        }
+    };
+
+    const handleDelete = async () => {
+        if (reviewToDelete) {
+            try {
+                await axiosClient.delete(`/api/review/${reviewToDelete}`);
+                setReviewToDelete(null);
+                setDeleteErrorMessage('');
+                fetchReviews();
+            } 
+            catch (error) {
+                if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+                    setErrorMessage(error.response.data.message); 
+                } 
+                else {
+                    setDeleteErrorMessage("Wystąpił nieoczekiwany błąd.");
+                }
+            }
+        }
+    };
+
+    const handleAddReview = async () => {
+        const schema = Joi.object({
+            content: Joi.string().required().max(500).messages({
+                'any.required': 'Treść recenzji jest wymagana!',
+                'string.empty': 'Treść recenzji nie może być pusta!',
+                'string.max': 'Treść recenzji może mieć maksymalnie {#limit} znaków!'
+            })
+        });
+
+        const { error } = schema.validate({ content: newReview });
+
+        if (error) {
+            setErrorMessage(error.details[0].message);
+            return;
+        }
+
+        if (newReview.trim()) {
+            try {
+                await axiosClient.post('/api/review', { content: newReview });
+                setNewReview("");
+                setErrorMessage('');
+                fetchReviews();
+            } 
+            catch (error) {
+                if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+                    setErrorMessage(error.response.data.message); 
+                } 
+                else {
+                    setErrorMessage("Wystąpił nieoczekiwany błąd.");
+                }
+            }
+        }
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleDateString('pl-PL', options);
+    };
+
+    const renderAuthorName = (author) => {
+        if (author) {
+            return `${author.firstName} ${author.lastName}`;
+        } else {
+            return '[Konto usunięte]';
+        }
+    };
+
+    return (
+        <div>
+            <header className="masthead" style={{ backgroundImage: "url('https://www.sheknows.com/wp-content/uploads/2022/09/right-time-to-express-opinions.jpg?w=1440')" }}>
+                <div className="container position-relative px-4 px-lg-5">
+                    <div className="row gx-4 gx-lg-5 justify-content-center">
+                        <div className="col-md-10 col-lg-8 col-xl-7">
+                            <div className="site-heading text-center">
+                                <h1>Opinie o naszym sklepie</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div className="container my-4">
+
+                {user && (
+                    <div className="footer-button">
+                        <textarea
+                            className="form-control"
+                            placeholder="Dodaj opinię"
+                            value={newReview}
+                            onChange={(e) => setNewReview(e.target.value)}
+                        />
+                        <button onClick={handleAddReview} className="btn btn-secondary mt-2">Dodaj opinię</button>
+
+                        <div className="alerts-container">
+                            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+                        </div>
+
+                        <hr className="my-4" />
+                    </div>
+                )}
+
+
+
+
+                <div className="opinions-list">
+                    {reviews.map((review) => (
+                        <div key={review._id} className="opinion-box py-3">
+
+                            <div className="opinion-header">
+                            <span className="user">{renderAuthorName(review.author)}</span>
+                                <span className="date opinion-box__date">{formatDate(review.updated_at)}</span>
+                            </div>
+
+                            <div className="opinion-body">
+                                {editingReview && editingReview._id === review._id ? (
+                                    <>
+                                        <textarea
+                                            className="form-control"
+                                            value={editingReview.content}
+                                            onChange={(e) => setEditingReview({ ...editingReview, content: e.target.value })}
+                                        />
+
+                                        <div className="alerts-container">
+                                            {editErrorMessage && <Alert variant="danger">{editErrorMessage}</Alert>}
+                                            {deleteErrorMessage && <Alert variant="danger">{deleteErrorMessage}</Alert>}
+                                        </div>
+
+                                        <button onClick={handleSaveEdit} className="btn btn-success btn-sm mt-2">Zapisz</button>
+                                    </>
+                                ) : (
+                                    <p>{review.content}</p>
+                                )}
+                            </div>
+
+                            {(user && (user.status === 'admin' || (review.author && review.author._id === user._id))) && (
+                                <div className="opinion-actions">
+                                    <button className="btn btn-success btn-sm" onClick={() => handleEdit(review)}>Edytuj</button>
+                                    <button className="btn btn-danger btn-sm" onClick={() => setReviewToDelete(review._id)}>Usuń</button>
+                                </div>
+                            )}
+                            <hr className="my-4" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <CustomModal
+                isOpen={!!reviewToDelete}
+                onClose={() => setReviewToDelete(null)}
+            >
+                <div className="modal-content">
+                    <p>Czy na pewno chcesz usunąć tę opinię?</p>
+                    <button onClick={handleDelete} className="btn btn-danger narrow-button">Usuń</button>
+                    <button onClick={() => setReviewToDelete(null)} className="btn btn-secondary narrow-button">Anuluj</button>
+                </div>
+            </CustomModal>
+        </div>
+    );
+};
+
+export default Reviews;
