@@ -1,96 +1,194 @@
-[{
-  "_id": {
-    "$oid": "666f05c5dca1fa322a02fe4a"
+[
+  {
+    "_id": {
+      "$oid": "666f05c5dca1fa322a02fe4a"
+    },
+    "author": {
+      "$oid": "666dabc152c685d02114826a"
+    },
+    "content": "Super sklep wędkarski. Ogromny asortyment spinningowy, woblery i plecionki najwyższej jakości. Przychodzę regularnie przed każdą wyprawą!",
+    "created_at": {
+      "$date": "2024-06-16T15:33:25.031Z"
+    },
+    "updated_at": {
+      "$date": "2024-06-17T11:29:56.536Z"
+    },
+    "__v": 0
   },
-  "author": {
-    "$oid": "666dabc152c685d02114826a"
+  {
+    "_id": {
+      "$oid": "666f090ddca1fa322a02feac"
+    },
+    "author": {
+      "$oid": "666dc7da5b3c30512984f579"
+    },
+    "content": "Obsługa klienta jest niesamowicie przyjazna i pomocna. Pracownicy chętnie udzielają porad i dzielą się swoją wiedzą na temat najlepszych miejsc do wędkowania w regionie.",
+    "created_at": {
+      "$date": "2024-06-16T15:47:25.942Z"
+    },
+    "updated_at": {
+      "$date": "2024-06-17T11:30:06.250Z"
+    },
+    "__v": 0
   },
-  "content": "Super sklep. Przychodzę tam regularnie.",
-  "created_at": {
-    "$date": "2024-06-16T15:33:25.031Z"
+  {
+    "_id": {
+      "$oid": "666f136adca1fa322a030051"
+    },
+    "author": {
+      "$oid": "666f134adca1fa322a03003c"
+    },
+    "content": "Świetne zanęty i przynęty naturalne, zawsze świeże robaki i ochotka. Polecam każdemu wędkarzowi gruntowemu!",
+    "created_at": {
+      "$date": "2024-06-16T16:31:38.182Z"
+    },
+    "updated_at": {
+      "$date": "2024-06-16T16:31:38.182Z"
+    },
+    "__v": 0
   },
-  "updated_at": {
-    "$date": "2024-06-17T11:29:56.536Z"
+  {
+    "_id": {
+      "$oid": "666f1388dca1fa322a030055"
+    },
+    "author": {
+      "$oid": "666fe9a6a36831b0c418385f"
+    },
+    "content": "Kupiłem tutaj kompletny zestaw karpiowy z kołowrotkiem z wolnym biegiem. Sprzęt sprawuje się doskonale na zasiadkach. Na pewno wrócę!",
+    "created_at": {
+      "$date": "2024-06-16T16:32:08.237Z"
+    },
+    "updated_at": {
+      "$date": "2024-06-17T11:26:13.050Z"
+    },
+    "__v": 0
   },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "666f090ddca1fa322a02feac"
+  {
+    "_id": {
+      "$oid": "66702412654882d3754b2301"
+    },
+    "author": {
+      "$oid": "667023a1654882d3754b22e7"
+    },
+    "content": "Super sklep wędkarski. Można tu znaleźć dosłownie wszystko, od drobnych haczyków po profesjonalne echosondy i pontony.",
+    "created_at": {
+      "$date": "2024-06-17T11:54:58.725Z"
+    },
+    "updated_at": {
+      "$date": "2024-06-17T11:54:58.725Z"
+    },
+    "__v": 0
   },
-  "author": {
-    "$oid": "666dabc152c685d02114826a"
+  {
+    "_id": {
+      "$oid": "66702467654882d3754b2318"
+    },
+    "author": {
+      "$oid": "66702451654882d3754b2310"
+    },
+    "content": "Sklep wędkarski z prawdziwego zdarzenia! Tutaj znajdziesz wszystko, czego potrzebujesz do udanej wyprawy szczupakowej.",
+    "created_at": {
+      "$date": "2024-06-17T11:56:23.306Z"
+    },
+    "updated_at": {
+      "$date": "2024-06-17T11:56:23.306Z"
+    },
+    "__v": 0
   },
-  "content": "Obsługa klienta jest przyjazna i pomocna. Pracownicy chętnie udzielają porad i dzielą się swoją wiedzą na temat najlepszych miejsc do wędkowania czy nowości w świecie wędkarstwa.",
-  "created_at": {
-    "$date": "2024-06-16T15:47:25.942Z"
+  {
+    "_id": {
+      "$oid": "66702467654882d3754b2319"
+    },
+    "author": {
+      "$oid": "666dc7da5b3c30512984f57a"
+    },
+    "content": "Błyskawiczna realizacja zamówień i fachowa porada techniczna. Wędka feederowa dotarła pancernie zapakowana.",
+    "created_at": {
+      "$date": "2024-07-01T09:15:10.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-01T09:15:10.000Z"
+    },
+    "__v": 0
   },
-  "updated_at": {
-    "$date": "2024-06-17T11:30:06.250Z"
+  {
+    "_id": {
+      "$oid": "66702467654882d3754b2320"
+    },
+    "author": {
+      "$oid": "666f134adca1fa322a03003c"
+    },
+    "content": "Bardzo dobra jakość podbieraków i mat karpiowych. Dbają o bezpieczeństwo ryb zgodnie z zasadą Catch & Release.",
+    "created_at": {
+      "$date": "2024-07-15T14:22:45.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-15T14:22:45.000Z"
+    },
+    "__v": 0
   },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "666f136adca1fa322a030051"
+  {
+    "_id": {
+      "$oid": "66702467654882d3754b2321"
+    },
+    "author": {
+      "$oid": "666fe9a6a36831b0c418385f"
+    },
+    "content": "Polecam każdemu spinningiście! Mają świetne gumy na okonie i główki jigowe w każdej możliwej gramaturze.",
+    "created_at": {
+      "$date": "2024-08-05T18:05:12.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-08-05T18:05:12.000Z"
+    },
+    "__v": 0
   },
-  "author": {
-    "$oid": "666f134adca1fa322a03003c"
+  {
+    "_id": {
+      "$oid": "66702467654882d3754b2322"
+    },
+    "author": {
+      "$oid": "667023a1654882d3754b22e7"
+    },
+    "content": "Znakomity wybór odzieży termicznej i woderów. Nawet podczas późnojesiennych zasiadek nie ma obaw o chłód.",
+    "created_at": {
+      "$date": "2024-09-10T12:40:00.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-09-10T12:40:00.000Z"
+    },
+    "__v": 0
   },
-  "content": "Super sklep.",
-  "created_at": {
-    "$date": "2024-06-16T16:31:38.182Z"
+  {
+    "_id": {
+      "$oid": "66702467654882d3754b2323"
+    },
+    "author": {
+      "$oid": "66702451654882d3754b2310"
+    },
+    "content": "Ceny bardzo konkurencyjne, a program lojalnościowy dla stałych klientów daje świetne zniżki na sprzęt.",
+    "created_at": {
+      "$date": "2024-10-02T16:50:33.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-10-02T16:50:33.000Z"
+    },
+    "__v": 0
   },
-  "updated_at": {
-    "$date": "2024-06-16T16:31:38.182Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "666f1388dca1fa322a030055"
-  },
-  "author": {
-    "$oid": "666f134adca1fa322a03003c"
-  },
-  "content": "Będę często wpadać.",
-  "created_at": {
-    "$date": "2024-06-16T16:32:08.237Z"
-  },
-  "updated_at": {
-    "$date": "2024-06-17T11:26:13.050Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "66702412654882d3754b2301"
-  },
-  "author": {
-    "$oid": "667023a1654882d3754b22e7"
-  },
-  "content": "Super sklep wędkarski. Można tu znaleźć wszystko, co się potrzebuje.",
-  "created_at": {
-    "$date": "2024-06-17T11:54:58.725Z"
-  },
-  "updated_at": {
-    "$date": "2024-06-17T11:54:58.725Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "66702467654882d3754b2318"
-  },
-  "author": {
-    "$oid": "66702451654882d3754b2310"
-  },
-  "content": "Sklep wędkarski z prawdziwego zdarzenia. Tutaj znajdziesz wszystko, czego potrzebujesz do udanej wędkarskiej wyprawy.",
-  "created_at": {
-    "$date": "2024-06-17T11:56:23.306Z"
-  },
-  "updated_at": {
-    "$date": "2024-06-17T11:56:23.306Z"
-  },
-  "__v": 0
-}]
+  {
+    "_id": {
+      "$oid": "66702467654882d3754b2324"
+    },
+    "author": {
+      "$oid": "666dc7da5b3c30512984f579"
+    },
+    "content": "Kupiłem sygnalizatory brań z centralką – działają bez zarzutu nawet w ulewnym deszczu. Pełen profesjonalizm!",
+    "created_at": {
+      "$date": "2024-11-12T10:30:15.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-11-12T10:30:15.000Z"
+    },
+    "__v": 0
+  }
+]

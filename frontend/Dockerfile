@@ -8,6 +8,9 @@ RUN npm install
 
 COPY . .
 
+# Ensure .env exists from .env.example if missing
+RUN if [ ! -f .env ] && [ -f .env.example ]; then cp .env.example .env; fi
+
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["sh", "-c", "if [ ! -f .env ] && [ -f .env.example ]; then cp .env.example .env; fi && npm start"]

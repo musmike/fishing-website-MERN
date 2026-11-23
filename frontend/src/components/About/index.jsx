@@ -81,7 +81,12 @@ const About = () => {
                         {Array.from({ length: 10 }, (_, index) => (
                             <div className="col-4 mb-4" key={index}>
                                 <a href={`assets/img/nasz_sklep/image${index + 1}.jpg`} data-lightbox="galeria" data-title={`Obraz ${index + 1}`}>
-                                    <img src={`assets/img/nasz_sklep/image${index + 1}.jpg`} className="w-100 shadow-1-strong rounded mb-4" alt={`Obraz ${index + 1}`} />
+                                    <img 
+                                        src={`assets/img/nasz_sklep/image${index + 1}.jpg`} 
+                                        className="w-100 shadow-1-strong rounded" 
+                                        alt={`Obraz ${index + 1}`}
+                                        style={{ height: '250px', objectFit: 'cover', width: '100%', display: 'block' }}
+                                    />
                                 </a>
                             </div>
                         ))}

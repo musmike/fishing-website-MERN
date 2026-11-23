@@ -1,14 +1,14 @@
 services:
   db:
     image: mongo:6
-    container_name: fishing_shop_db
+    container_name: fishing_mern_db
     ports:
       - "27017:27017"
     volumes:
-      - fishing_shop_data:/data/db
+      - fishing_mern_data:/data/db
   backend:
     build: ./backend
-    container_name: fishing_shop_backend
+    container_name: fishing_mern_backend
     ports:
       - "5000:5000"
     volumes:
@@ -23,7 +23,7 @@ services:
 
   frontend:
     build: ./frontend
-    container_name: fishing_shop_frontend
+    container_name: fishing_mern_frontend
     ports:
       - "3000:3000"
     environment:
@@ -38,4 +38,4 @@ services:
       - backend
 
 volumes:
-  fishing_shop_data:
+  fishing_mern_data:

@@ -29,6 +29,7 @@ const transformData = (data) => {
 
 const importCollection = async (Model, data, name) => {
     let addedCount = 0;
+    let updatedCount = 0;
     
     for (const item of data) {
         try {
@@ -38,29 +39,46 @@ const importCollection = async (Model, data, name) => {
                 if (name === 'Użytkownicy' && item.email) {
                     const emailExists = await Model.findOne({ email: item.email });
                     if (emailExists) {
-                        console.log(`⚠️ Pominięto użytkownika (email zajęty): ${item.email}`);
+                        await Model.findOneAndUpdate({ email: item.email }, {
+                            firstName: item.firstName,
+                            lastName: item.lastName,
+                            password: item.password,
+                            status: item.status
+                        });
+                        updatedCount++;
                         continue;
                     }
                 }
 
                 await Model.create(item);
                 addedCount++;
+            } else {
+                if (name === 'Użytkownicy') {
+                    await Model.findByIdAndUpdate(item._id, {
+                        firstName: item.firstName,
+                        lastName: item.lastName,
+                        email: item.email,
+                        password: item.password,
+                        status: item.status
+                    });
+                    updatedCount++;
+                }
             }
         } catch (err) {
             console.error(`❌ Błąd przy dodawaniu elementu do ${name}:`, err.message);
         }
     }
 
-    if (addedCount > 0) {
-        console.log(`✅ ${name}: dodano ${addedCount} nowych wpisów.`);
+    if (addedCount > 0 || updatedCount > 0) {
+        console.log(`✅ ${name}: dodano ${addedCount}, zaktualizowano ${updatedCount} wpisów.`);
     } else {
-        console.log(`ℹ️ ${name}: wszystkie wpisy z pliku JSON już istnieją.`);
+        console.log(`ℹ️ ${name}: wszystkie wpisy (${data.length}) są aktualne.`);
     }
 };
 
 const seedDatabase = async () => {
     try {
-        console.log('📦 Rozpoczynam weryfikację i seedowanie danych...');
+        console.log('📦 Rozpoczynam weryfikację i seedowanie bazy danych...');
 
         const dataPath = path.join(__dirname, 'init_data');
 
@@ -76,7 +94,7 @@ const seedDatabase = async () => {
         await importCollection(Post, posts, 'Posty');
         await importCollection(Review, reviews, 'Opinie');
 
-        console.log('🚀 Proces seedowania zakończony.');
+        console.log('🚀 Proces seedowania zakończony sukcesem.');
 
     } catch (error) {
         console.error('❌ Błąd krytyczny seedera:', error);
